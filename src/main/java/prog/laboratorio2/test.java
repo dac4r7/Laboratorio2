@@ -39,7 +39,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author Alumno
+ * @author DAC
  */
 public class test {
 
@@ -47,8 +47,7 @@ public class test {
   
      */
     public static void main(String[] args) {
-        Scanner ingreso = new Scanner(System.in);
-        int dato=1,opcion=1;
+        
         ArrayList <Auto> listaautos = new ArrayList<>();
         Motor motorhib =  new Motor( 40000, 2.0, 165);
         Motor motoclas = new Motor( 65000, 1.8, 140); 
@@ -62,12 +61,21 @@ public class test {
         listaautos.add(clasico);
         listaautos.add(suv);
         
-        while(opcion >0 && opcion <4){
+        menu( listaautos);  
+        
+}
+    
+    static public void menu(ArrayList <Auto> listaautos){
+        Scanner ingreso = new Scanner(System.in);
+         int dato=1,opcion=1;
+           
+         while(opcion >0 && opcion <5){
         System.out.println("############### ELIJA UN VEHICULO #################");
         System.out.println("####1.Toyota (kms actuales : " + listaautos.get(0).motor.getKilometrosRecorridos() );
         System.out.println("####2.Volskwagen (kms actuales : " + listaautos.get(1).motor.getKilometrosRecorridos() );
         System.out.println("####3.Honda (kms actuales : " + listaautos.get(2).motor.getKilometrosRecorridos() );
-        System.out.println("####0.Salir");
+        System.out.println("####4. Mostrar Informacion");
+        System.out.println("####(otro numero).Salir");
         System.out.print("Opcion ->");
         
         opcion = ingreso.nextInt();  
@@ -78,10 +86,25 @@ public class test {
        
         dato = ingreso.nextInt();
   
-        listaautos.get(opcion-1).avanzar(dato) ;
+        listaautos.get(opcion-1).avanzar(dato) ; //Sumamos kilometros
         
+        }else if(opcion ==4 ){
+            
+        System.out.println("#1.Informacion del Toyota  "  );
+        System.out.println("#2.Informacion del Volskwagen " );
+        System.out.println("#3.Informacion del Honda  " );
+        System.out.print("Opcion ->");
+        opcion = ingreso.nextInt();  
+        switch (opcion) {
+          case 1: System.out.println(listaautos.get(0).mostrarInfo()); break;
+          case 2: System.out.println(listaautos.get(1).mostrarInfo()); break;
+          case 3:System.out.println(listaautos.get(2).mostrarInfo()); break;
+        }        
+        }else if(opcion <1 || opcion > 3){
+            System.out.println(".. Saliendo del programa ");
         }
-    }
+       } 
+            
+        }
     
-}
 }

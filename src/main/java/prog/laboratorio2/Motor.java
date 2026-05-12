@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Alumno
+ * @author DAC
  */
 public class Motor {
     

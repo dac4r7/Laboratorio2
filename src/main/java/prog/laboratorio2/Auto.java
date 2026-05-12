@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Alumno
+ * @author DAC
  */
 public class Auto {
     
@@ -30,15 +30,26 @@ public class Auto {
   public void avanzar(int km){
     boolean estado =  motor.requiereCambioAceite(km);
           if(  estado  ){
-              String msj = "El auto necesita cambio de aceite";
-           // System.out.println("el auto necesita cambio de aceite");    
-          //     javax.swing.SwingUtilities.invokeLater(() -> {
-            JOptionPane.showMessageDialog(null,msj,"AVISO",JOptionPane.ERROR_MESSAGE); //  });
+              String msj = "El vehiculo : "+ this.marca + " " + this.modelo +" necesita cambio de aceite";
+           
+              //Mostrar el mensaje por encima de todas las ventanas
+            final javax.swing.JFrame busca = new javax.swing.JFrame();
+            busca.setAlwaysOnTop(true);
+            JOptionPane.showMessageDialog(busca,msj,"AVISO",JOptionPane.ERROR_MESSAGE); //  });
              motor.setKilometrosRecorridos(100000);
       }else {
           motor.setKilometrosRecorridos(km + motor.getKilometrosRecorridos());
-            }
-       
+            }   
+  }
+  
+  public String mostrarInfo(){
+       return "\n-----------INFORMACION--DEL--VEHICULO-------------"+
+              "\nMarca : " + getMarca() + "\n" + "Modelo : "+ getModelo()+
+                            "\nColor : " + getColor() + "\n Precio: "+ getPrecio()+
+                            "\n  Kilometros recorridos : " + motor.getKilometrosRecorridos() +
+                            "\n  Motor(Cilindrada) : " + motor.getCilindrada() +
+                            "\n  Motor(Caballos de fuerza) : " + motor.getCaballosFuerza()+
+                            "\n------------------------------------------------------";      
   }
 
     public String getMarca() {
